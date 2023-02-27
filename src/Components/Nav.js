@@ -19,18 +19,27 @@ const NavBar = styled.div`
     height: 70%;
     font-size: 1.5rem;
     text-decoration: none;
+    margin-right: 5px;
   }
 `;
 const StyledLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-decoration: none;
   color: black;
+  padding: 2px 5px;
+  background-color: white;
+  border-radius: 50%;
 `;
 
 const Nav = () => {
   return (
     <NavBar>
       <div>
-        <StyledLink to="/">메인페이지</StyledLink>
+        <StyledLink to="/">
+          <img src="../home_icon.png" alt="Home" />
+        </StyledLink>
       </div>
       <div>
         <span>서울에서 열리는 문화행사</span>
