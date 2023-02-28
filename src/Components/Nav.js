@@ -22,6 +22,7 @@ const NavBar = styled.div`
     margin-right: 5px;
   }
 `;
+
 const StyledLink = styled(Link)`
   display: flex;
   justify-content: center;
@@ -45,7 +46,7 @@ const Nav = () => {
         <span>서울에서 열리는 문화행사</span>
       </div>
       <button>
-        <StyledLink to="/Mine">찜목록</StyledLink>
+        <Link to="/Mine">찜목록</Link>
       </button>
     </NavBar>
   );
