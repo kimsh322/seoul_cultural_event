@@ -10,8 +10,8 @@ export const fetchEvent = createAsyncThunk("items", async () => {
 
 const initialState = { value: "초기값" };
 
-export const itemSlice = createSlice({
-  name: "item",
+export const fullItemSlice = createSlice({
+  name: "fullItem",
   initialState,
   reducers: {
     // filterByDate: (state) => {
@@ -25,8 +25,13 @@ export const itemSlice = createSlice({
     // },
   },
   extraReducers: (builder) => {
+    builder.addCase(fetchEvent.pending, (state) => {
+      // Add user to the state array
+      state.loading = "pending";
+    });
     builder.addCase(fetchEvent.fulfilled, (state, action) => {
       // Add user to the state array
+      state.loading = "succeeded";
       state.value = { ...action.payload };
     });
   },
@@ -36,4 +41,4 @@ export const itemSlice = createSlice({
 // export const { filterByDate, filterByRegion, filterByCodeName } =
 //   itemSlice.actions;
 
-export default itemSlice.reducer;
+export default fullItemSlice.reducer;

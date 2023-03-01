@@ -6,9 +6,10 @@ import Mine from "./Pages/Mine";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchEvent } from "./itemSlices";
+import DetailItem from "./Pages/DetailItem";
 
 function App() {
-  const item = useSelector((state) => state.item.value);
+  const { value: fullItem } = useSelector((state) => state.fullItem);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchEvent());
@@ -19,10 +20,11 @@ function App() {
       <GlobalStyle />
       <Router>
         <Nav />
-        <div>{item ? console.log(item) : ""}</div>
+        <div>{fullItem ? console.log(fullItem) : ""}</div>
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/Mine" element={<Mine />} />
+          <Route path="/DetailItem" element={<DetailItem />} />
         </Routes>
       </Router>
     </>

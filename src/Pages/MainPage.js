@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const MainDiv = styled.div`
   display: flex;
@@ -8,7 +9,13 @@ const MainDiv = styled.div`
 `;
 
 const MainPage = () => {
-  return <MainDiv>???</MainDiv>;
+  return (
+    <MainDiv>
+      <button>
+        <Link to="/DetailItem">클릭</Link>
+      </button>
+    </MainDiv>
+  );
 };
 
 export default MainPage;
