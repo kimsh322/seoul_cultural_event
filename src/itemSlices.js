@@ -9,7 +9,7 @@ export const fetchEvent = createAsyncThunk("items", async () => {
 });
 
 const initialState = { value: "초기값" };
-
+// 전체 아이템 저장
 export const fullItemSlice = createSlice({
   name: "fullItem",
   initialState,
@@ -24,3 +24,26 @@ export const fullItemSlice = createSlice({
     });
   },
 });
+// 필터링된 아이템
+export const filteredByPageSlice = createSlice({
+  name: "filteredByPageSlice",
+  initialState,
+  reducers: {},
+});
+// 페이지
+export const currentPageSlice = createSlice({
+  name: "currentPage",
+  initialState: { value: 1 },
+  reducers: {
+    prev: (state) => {
+      state.value--;
+    },
+    next: (state) => {
+      state.value++;
+    },
+    some: (state, action) => {
+      state.value = action.payload;
+    },
+  },
+});
+export const { prev, next, some } = currentPageSlice.actions;

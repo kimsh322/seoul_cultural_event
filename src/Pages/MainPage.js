@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import Item from "../Components/Item";
+import Pagination from "../Components/Pagination";
 
 const MainDiv = styled.div`
   display: flex;
@@ -39,6 +40,7 @@ const MainPage = () => {
             return <Item key={el.TITLE} itemImg={el.MAIN_IMG} />;
           })}
         </div>
+        <Pagination />
       </MainDiv>
     );
   }

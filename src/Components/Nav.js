@@ -10,6 +10,9 @@ const NavBar = styled.div`
   background-color: skyblue;
   font-size: 3rem;
 
+  h1 {
+    font-size: 2.5rem;
+  }
   & div {
     margin: 5px;
   }
@@ -42,9 +45,7 @@ const Nav = () => {
           <img src="../home_icon.png" alt="Home" />
         </StyledLink>
       </div>
-      <div>
-        <span>서울에서 열리는 문화행사</span>
-      </div>
+      <h1>서울에서 열리는 문화행사</h1>
       <button>
         <Link to="/Mine">찜목록</Link>
       </button>
