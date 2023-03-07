@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { useSelector } from "react-redux";
-import Item from "../Components/Item";
 import Pagination from "../Components/Pagination";
+import ItemBox from "../Components/ItemBox";
+import FilterBox from "../Components/FilterBox";
 
 const MainDiv = styled.div`
   display: flex;
@@ -9,41 +9,16 @@ const MainDiv = styled.div`
   align-items: center;
   flex-direction: column;
   height: 90%;
-
-  #filter-container {
-    width: 60%;
-    height: 15%;
-    background-color: beige;
-  }
-
-  #item-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 60%;
-    height: 75%;
-    flex-wrap: wrap;
-    margin-top: 1%;
-  }
 `;
 
 const MainPage = () => {
-  const { value: fullItem, loading } = useSelector((state) => state.fullItem);
-
-  if (loading === "succeeded") {
-    const itemArr = fullItem.culturalEventInfo.row;
-    return (
-      <MainDiv>
-        <div id="filter-container">분류</div>
-        <div id="item-container">
-          {itemArr.map((el) => {
-            return <Item key={el.TITLE} itemImg={el.MAIN_IMG} />;
-          })}
-        </div>
-        <Pagination />
-      </MainDiv>
-    );
-  }
+  return (
+    <MainDiv>
+      <FilterBox />
+      <ItemBox />
+      <Pagination />
+    </MainDiv>
+  );
 };
 
 export default MainPage;

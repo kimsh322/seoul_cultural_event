@@ -1,5 +1,5 @@
 const Mine = () => {
-  return <div>Mine</div>;
+  return <div>찜목록</div>;
 };
 
 export default Mine;
