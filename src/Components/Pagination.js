@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
-import { prev, next, some } from "../itemSlices";
+import { prevPage, nextPage, somePage } from "../itemSlices";
 
 const PaginationDiv = styled.div`
   display: flex;
@@ -29,22 +29,23 @@ const Pagination = () => {
         className="button prev"
         disabled={currentPage === 1}
         onClick={() => {
-          dispatch(prev());
+          dispatch(prevPage());
         }}
       >
         {"<-"}
       </button>
       {pageButtons.map((_, i) => {
+        i = i + 10 * Math.floor((currentPage - 1) / 10);
         return (
           <button
-            className={`button ${i === 0 ? "active" : ""}`} // 현재 페이지 활성화
+            className={`button ${i + 1 === currentPage ? "active" : ""}`} // 현재 페이지 활성화
             key={i + 1}
             onClick={() => {
-              if (i + currentPage <= maxPages) dispatch(some(i + currentPage));
+              dispatch(somePage(i + 1));
             }}
-            disabled={i + currentPage > maxPages}
+            disabled={i >= maxPages}
           >
-            {i + currentPage}
+            {i + 1}
           </button>
         );
       })}
@@ -52,7 +53,7 @@ const Pagination = () => {
         className="button next"
         disabled={currentPage === maxPages}
         onClick={() => {
-          dispatch(next());
+          dispatch(nextPage());
         }}
       >
         {"->"}

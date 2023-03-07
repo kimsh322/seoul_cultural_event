@@ -35,15 +35,15 @@ export const currentPageSlice = createSlice({
   name: "currentPage",
   initialState: { value: 1 },
   reducers: {
-    prev: (state) => {
+    prevPage: (state) => {
       state.value--;
     },
-    next: (state) => {
+    nextPage: (state) => {
       state.value++;
     },
-    some: (state, action) => {
+    somePage: (state, action) => {
       state.value = action.payload;
     },
   },
 });
-export const { prev, next, some } = currentPageSlice.actions;
+export const { prevPage, nextPage, somePage } = currentPageSlice.actions;
