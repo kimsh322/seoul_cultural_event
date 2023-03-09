@@ -11,18 +11,28 @@ const ItemBoxContainer = styled.div`
   margin-top: 1%;
 `;
 const ItemBox = () => {
-  const { value: fullItem, loading } = useSelector((state) => state.fullItem);
+  const { fullItem } = useSelector((state) => state.fullItem);
+  const { currentPage, limitItems } = useSelector((state) => state.currentPage);
 
-  if (loading === "succeeded") {
-    const itemArr = fullItem.culturalEventInfo.row;
-    return (
-      <ItemBoxContainer>
-        {itemArr.map((el) => {
-          return <Item key={el.TITLE} itemImg={el.MAIN_IMG} />;
-        })}
-      </ItemBoxContainer>
-    );
-  }
+  const itemArr = fullItem.culturalEventInfo.row;
+  // 한 페이지에 6개 item 렌더링
+  const currentArr = itemArr.slice(
+    (currentPage - 1) * limitItems,
+    currentPage * limitItems
+  );
+  return (
+    <ItemBoxContainer>
+      {currentArr.map((el, idx) => {
+        return (
+          <Item
+            key={el.TITLE}
+            itemImg={el.MAIN_IMG}
+            idx={idx + (currentPage - 1) * limitItems}
+          />
+        );
+      })}
+    </ItemBoxContainer>
+  );
 };
 
 export default ItemBox;

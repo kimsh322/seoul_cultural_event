@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 const MainDiv = styled.div`
@@ -41,10 +42,10 @@ const MainDiv = styled.div`
 `;
 
 const DetailItem = () => {
-  const { value: fullItem, loading } = useSelector((state) => state.fullItem);
-
+  const { fullItem, loading } = useSelector((state) => state.fullItem);
+  const idx = useLocation().state;
   if (loading === "succeeded") {
-    const itemObj = fullItem.culturalEventInfo.row[1];
+    const itemObj = fullItem.culturalEventInfo.row[+idx];
     return (
       <MainDiv>
         <div id="main-container">
@@ -59,7 +60,11 @@ const DetailItem = () => {
             <div className="contents">신청일 : {itemObj.RGSTDATE}</div>
             <div className="contents">가격 : {itemObj.USE_FEE}</div>
             <div className="contents">
-              <a href={itemObj.ORG_LINK} target="_blank">
+              <a
+                href={itemObj.ORG_LINK}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
                 자세히보러가기
               </a>
             </div>

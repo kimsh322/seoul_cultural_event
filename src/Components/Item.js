@@ -19,10 +19,12 @@ const ItemDiv = styled.div`
   }
 `;
 
-const Item = ({ itemImg }) => {
+const Item = ({ itemImg, idx }) => {
   return (
     <ItemDiv>
-      <Link to="/DetailItem">{<img src={itemImg} alt="img" />}</Link>
+      <Link to="/DetailItem" state={idx ? idx : "0"}>
+        {<img src={itemImg} alt="img" />}
+      </Link>
     </ItemDiv>
   );
 };

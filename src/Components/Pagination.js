@@ -15,14 +15,12 @@ const PaginationDiv = styled.div`
 
 const Pagination = () => {
   // 필터 아이템 상태 필요함
-  // 페이지 10까지만 나오게하기
-  const { value: currentPage } = useSelector((state) => state.currentPage);
+  const { currentPage, limitItems } = useSelector((state) => state.currentPage);
+  const { fullItem } = useSelector((state) => state.fullItem);
   const dispatch = useDispatch();
-  const total = 100;
-  const limitItems = 6;
+  const total = fullItem.culturalEventInfo.row.length;
   const maxPages = Math.ceil(total / limitItems);
   const pageButtons = Array(10).fill();
-  console.log(currentPage);
   return (
     <PaginationDiv>
       <button
