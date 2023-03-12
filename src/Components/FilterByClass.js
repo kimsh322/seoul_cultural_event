@@ -1,10 +1,24 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { filteredByClass } from "../itemSlices";
+import { somePage } from "../itemSlices";
 
 const FilterByClass = () => {
   const [classification, setClassification] = useState("전체");
+  const { fullItem } = useSelector((state) => state.fullItem);
+  const itemArr = fullItem.culturalEventInfo.row;
+  const dispatch = useDispatch();
   const handleClassChange = (event) => {
     setClassification(event.target.value);
+    let filteredbyClassArr = itemArr.filter(
+      (el) => el.CODENAME === event.target.value
+    );
+    if (event.target.value === "전체")
+      filteredbyClassArr = fullItem.culturalEventInfo.row;
+    dispatch(filteredByClass(filteredbyClassArr));
+    dispatch(somePage(1));
   };
+
   return (
     <>
       <div className="classification-container">
@@ -16,6 +30,7 @@ const FilterByClass = () => {
           <option value="전체">전체</option>
           <option value="문화교양/강좌">문화교양/강좌</option>
           <option value="전시/미술">전시/미술</option>
+          <option value="교육/체험">교육/체험</option>
           <option value="뮤지컬/오페라">뮤지컬/오페라</option>
           <option value="클래식">클래식</option>
           <option value="독주/독창회">독주/독창회</option>

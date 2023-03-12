@@ -16,9 +16,9 @@ const PaginationDiv = styled.div`
 const Pagination = () => {
   // 필터 아이템 상태 필요함
   const { currentPage, limitItems } = useSelector((state) => state.currentPage);
-  const { fullItem } = useSelector((state) => state.fullItem);
+  const { filteredItem } = useSelector((state) => state.filteredItem);
   const dispatch = useDispatch();
-  const total = fullItem.culturalEventInfo.row.length;
+  const total = filteredItem.length;
   const maxPages = Math.ceil(total / limitItems);
   const pageButtons = Array(10).fill();
   return (

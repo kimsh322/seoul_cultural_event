@@ -13,7 +13,6 @@ function App() {
   useEffect(() => {
     dispatch(fetchEvent());
   }, []);
-  // dispatch(fetchEvent()); // 이거왜 무한루프돌지?
   return (
     <>
       <GlobalStyle />

@@ -24,10 +24,14 @@ export const fullItemSlice = createSlice({
   },
 });
 // 필터링된 아이템
-export const filteredByPageSlice = createSlice({
-  name: "filteredByPageSlice",
-  initialState: {},
-  reducers: {},
+export const filteredItemSlice = createSlice({
+  name: "filteredItem",
+  initialState: { filteredItem: [] },
+  reducers: {
+    filteredByClass: (state, action) => {
+      state.filteredItem = action.payload;
+    },
+  },
 });
 // 페이지
 export const currentPageSlice = createSlice({
@@ -45,4 +49,6 @@ export const currentPageSlice = createSlice({
     },
   },
 });
+
+export const { filteredByClass } = filteredItemSlice.actions;
 export const { prevPage, nextPage, somePage } = currentPageSlice.actions;

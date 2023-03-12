@@ -43,9 +43,9 @@ const MainDiv = styled.div`
 
 const DetailItem = () => {
   const { fullItem, loading } = useSelector((state) => state.fullItem);
-  const idx = useLocation().state;
+  const { idx } = useLocation().state;
   if (loading === "succeeded") {
-    const itemObj = fullItem.culturalEventInfo.row[+idx];
+    const itemObj = fullItem.culturalEventInfo.row[idx];
     return (
       <MainDiv>
         <div id="main-container">

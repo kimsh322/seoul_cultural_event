@@ -1,6 +1,9 @@
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Item from "./Item";
+import { useEffect } from "react";
+import { filteredByClass } from "../itemSlices";
+
 const ItemBoxContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -12,9 +15,14 @@ const ItemBoxContainer = styled.div`
 `;
 const ItemBox = () => {
   const { fullItem } = useSelector((state) => state.fullItem);
+  const { filteredItem } = useSelector((state) => state.filteredItem);
   const { currentPage, limitItems } = useSelector((state) => state.currentPage);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(filteredByClass(fullItem.culturalEventInfo.row));
+  }, []);
+  const itemArr = filteredItem;
 
-  const itemArr = fullItem.culturalEventInfo.row;
   // 한 페이지에 6개 item 렌더링
   const currentArr = itemArr.slice(
     (currentPage - 1) * limitItems,

@@ -1,14 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import {
   fullItemSlice,
-  filteredByPageSlice,
   currentPageSlice,
+  filteredItemSlice,
 } from "./itemSlices";
 
 export const store = configureStore({
   reducer: {
     fullItem: fullItemSlice.reducer,
-    filteredByPage: filteredByPageSlice.reducer,
+    filteredItem: filteredItemSlice.reducer,
     currentPage: currentPageSlice.reducer,
   },
 });
