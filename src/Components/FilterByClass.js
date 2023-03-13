@@ -28,7 +28,6 @@ const FilterByClass = () => {
           onChange={(event) => handleClassChange(event)}
         >
           <option value="전체">전체</option>
-          <option value="문화교양/강좌">문화교양/강좌</option>
           <option value="전시/미술">전시/미술</option>
           <option value="교육/체험">교육/체험</option>
           <option value="뮤지컬/오페라">뮤지컬/오페라</option>

@@ -2,8 +2,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchEvent = createAsyncThunk("items", async () => {
+  const authorize = "71766644546b736835336b767a465a";
   const response = await axios.get(
-    "http://openapi.seoul.go.kr:8088/71766644546b736835336b767a465a/json/culturalEventInfo/1/50/"
+    `http://openapi.seoul.go.kr:8088/${authorize}/json/culturalEventInfo/1/500/`
   );
   return response.data;
 });
@@ -30,8 +31,7 @@ export const filteredItemSlice = createSlice({
   reducers: {
     filteringReducer: (state, action) => {
       const { fullItem } = action.payload;
-      const { currentFilter } = action.payload;
-      const { classification, location } = currentFilter;
+      const { classification, location } = action.payload.currentFilter;
       const fullItemArr = fullItem.culturalEventInfo.row;
       let filteredArr = fullItemArr;
       if (classification !== "전체") {
