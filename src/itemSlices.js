@@ -28,8 +28,21 @@ export const filteredItemSlice = createSlice({
   name: "filteredItem",
   initialState: { filteredItem: [] },
   reducers: {
-    filteredByClass: (state, action) => {
-      state.filteredItem = action.payload;
+    filteringReducer: (state, action) => {
+      const { fullItem } = action.payload;
+      const { currentFilter } = action.payload;
+      const { classification, location } = currentFilter;
+      const fullItemArr = fullItem.culturalEventInfo.row;
+      let filteredArr = fullItemArr;
+      if (classification !== "전체") {
+        filteredArr = fullItemArr.filter(
+          (el) => el.CODENAME === classification
+        );
+      }
+      if (location !== "전체") {
+        filteredArr = filteredArr.filter((el) => el.GUNAME === location);
+      }
+      state.filteredItem = filteredArr;
     },
   },
 });
@@ -50,5 +63,5 @@ export const currentPageSlice = createSlice({
   },
 });
 
-export const { filteredByClass } = filteredItemSlice.actions;
+export const { filteringReducer } = filteredItemSlice.actions;
 export const { prevPage, nextPage, somePage } = currentPageSlice.actions;

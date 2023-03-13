@@ -1,9 +1,21 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setLocation } from "../filterSlices";
+import { useEffect } from "react";
+import { filteringReducer, somePage } from "../itemSlices";
 
 const FilterByLocation = () => {
-  const [location, setLocation] = useState("전체");
+  const currentFilter = useSelector((state) => state.currentFilter);
+  const { fullItem } = useSelector((state) => state.fullItem);
+  const dispatch = useDispatch();
+  const location = currentFilter.location;
+
+  useEffect(() => {
+    dispatch(filteringReducer({ fullItem, currentFilter }));
+  }, [location]);
+
   const handleLocation = (event) => {
-    setLocation(event.target.value);
+    dispatch(setLocation(event.target.value));
+    dispatch(somePage(1)); // 필터링되면 1페이지로 이동
   };
   return (
     <>

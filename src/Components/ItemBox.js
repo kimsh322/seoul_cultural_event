@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import Item from "./Item";
 import { useEffect } from "react";
-import { filteredByClass } from "../itemSlices";
+import { filteringReducer } from "../itemSlices";
 
 const ItemBoxContainer = styled.div`
   display: flex;
@@ -15,12 +15,13 @@ const ItemBoxContainer = styled.div`
 `;
 const ItemBox = () => {
   const { fullItem } = useSelector((state) => state.fullItem);
+  const currentFilter = useSelector((state) => state.currentFilter);
   const { filteredItem } = useSelector((state) => state.filteredItem);
   const { currentPage, limitItems } = useSelector((state) => state.currentPage);
   const dispatch = useDispatch();
   // 처음에는 fullitem을 렌더링 배열에 담는다.
   useEffect(() => {
-    dispatch(filteredByClass(fullItem.culturalEventInfo.row));
+    dispatch(filteringReducer({ fullItem, currentFilter }));
   }, []);
   const itemArr = filteredItem;
 

@@ -42,39 +42,35 @@ const MainDiv = styled.div`
 `;
 
 const DetailItem = () => {
-  const { fullItem, loading } = useSelector((state) => state.fullItem);
+  const { filteredItem } = useSelector((state) => state.filteredItem);
   const { idx } = useLocation().state;
-  if (loading === "succeeded") {
-    const itemObj = fullItem.culturalEventInfo.row[idx];
-    return (
-      <MainDiv>
-        <div id="main-container">
-          <div id="img-container">
-            <img src={itemObj.MAIN_IMG} alt="poster" />
-          </div>
-          <div id="contents-container">
-            <div className="contents">분류 : {itemObj.CODENAME}</div>
-            <div className="contents">타이틀 : {itemObj.TITLE}</div>
-            <div className="contents">행사장소 : {itemObj.PLACE}</div>
-            <div className="contents">행사날짜 : {itemObj.DATE}</div>
-            <div className="contents">신청일 : {itemObj.RGSTDATE}</div>
-            <div className="contents">가격 : {itemObj.USE_FEE}</div>
-            <div className="contents">
-              <a
-                href={itemObj.ORG_LINK}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                자세히보러가기
-              </a>
-            </div>
+  const itemObj = filteredItem[idx];
+  return (
+    <MainDiv>
+      <div id="main-container">
+        <div id="img-container">
+          <img src={itemObj.MAIN_IMG} alt="poster" />
+        </div>
+        <div id="contents-container">
+          <div className="contents">분류 : {itemObj.CODENAME}</div>
+          <div className="contents">타이틀 : {itemObj.TITLE}</div>
+          <div className="contents">행사장소 : {itemObj.PLACE}</div>
+          <div className="contents">행사날짜 : {itemObj.DATE}</div>
+          <div className="contents">신청일 : {itemObj.RGSTDATE}</div>
+          <div className="contents">가격 : {itemObj.USE_FEE}</div>
+          <div className="contents">
+            <a
+              href={itemObj.ORG_LINK}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              자세히보러가기
+            </a>
           </div>
         </div>
-      </MainDiv>
-    );
-  } else {
-    return <div> 로딩중입니다!</div>;
-  }
+      </div>
+    </MainDiv>
+  );
 };
 
 export default DetailItem;

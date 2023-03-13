@@ -1,23 +1,21 @@
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filteredByClass } from "../itemSlices";
+import { filteringReducer } from "../itemSlices";
 import { somePage } from "../itemSlices";
+import { setClassification } from "../filterSlices";
+import { useEffect } from "react";
 
 const FilterByClass = () => {
-  const [classification, setClassification] = useState("전체");
+  const currentFilter = useSelector((state) => state.currentFilter);
   const { fullItem } = useSelector((state) => state.fullItem);
-  const itemArr = fullItem.culturalEventInfo.row;
   const dispatch = useDispatch();
-  // 분류에 따른 필터링 함수
+  const classification = currentFilter.classification;
+
+  useEffect(() => {
+    dispatch(filteringReducer({ fullItem, currentFilter }));
+  }, [classification]);
+
   const handleClassChange = (event) => {
-    setClassification(event.target.value);
-    // 해당 분류의 item만 필터링
-    let filteredbyClassArr = itemArr.filter(
-      (el) => el.CODENAME === event.target.value
-    );
-    if (event.target.value === "전체")
-      filteredbyClassArr = fullItem.culturalEventInfo.row;
-    dispatch(filteredByClass(filteredbyClassArr)); // 필터링된 배열로 상태변경
+    dispatch(setClassification(event.target.value));
     dispatch(somePage(1)); // 필터링되면 1페이지로 이동
   };
 
