@@ -18,6 +18,7 @@ const ItemBox = () => {
   const { filteredItem } = useSelector((state) => state.filteredItem);
   const { currentPage, limitItems } = useSelector((state) => state.currentPage);
   const dispatch = useDispatch();
+  // 처음에는 fullitem을 렌더링 배열에 담는다.
   useEffect(() => {
     dispatch(filteredByClass(fullItem.culturalEventInfo.row));
   }, []);

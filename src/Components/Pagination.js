@@ -14,13 +14,12 @@ const PaginationDiv = styled.div`
 `;
 
 const Pagination = () => {
-  // 필터 아이템 상태 필요함
   const { currentPage, limitItems } = useSelector((state) => state.currentPage);
   const { filteredItem } = useSelector((state) => state.filteredItem);
   const dispatch = useDispatch();
   const total = filteredItem.length;
   const maxPages = Math.ceil(total / limitItems);
-  const pageButtons = Array(10).fill();
+  const pageButtons = Array(10).fill(); // 최대 10페이지까지 렌더링
   return (
     <PaginationDiv>
       <button

@@ -8,15 +8,17 @@ const FilterByClass = () => {
   const { fullItem } = useSelector((state) => state.fullItem);
   const itemArr = fullItem.culturalEventInfo.row;
   const dispatch = useDispatch();
+  // 분류에 따른 필터링 함수
   const handleClassChange = (event) => {
     setClassification(event.target.value);
+    // 해당 분류의 item만 필터링
     let filteredbyClassArr = itemArr.filter(
       (el) => el.CODENAME === event.target.value
     );
     if (event.target.value === "전체")
       filteredbyClassArr = fullItem.culturalEventInfo.row;
-    dispatch(filteredByClass(filteredbyClassArr));
-    dispatch(somePage(1));
+    dispatch(filteredByClass(filteredbyClassArr)); // 필터링된 배열로 상태변경
+    dispatch(somePage(1)); // 필터링되면 1페이지로 이동
   };
 
   return (

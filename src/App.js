@@ -11,6 +11,7 @@ import DetailItem from "./Pages/DetailItem";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
+    // 오픈 api에서 데이터 요청
     dispatch(fetchEvent());
   }, []);
   return (
