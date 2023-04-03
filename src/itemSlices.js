@@ -2,10 +2,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchEvent = createAsyncThunk("items", async () => {
-  const authorize = "71766644546b736835336b767a465a";
   const loadingItem = 500;
   const response = await axios.get(
-    `http://openapi.seoul.go.kr:8088/${authorize}/json/culturalEventInfo/1/${loadingItem}/`
+    `http://openapi.seoul.go.kr:8088/${process.env.REACT_APP_authorize}/json/culturalEventInfo/1/${loadingItem}/`
   );
   return response.data;
 });
@@ -32,22 +31,17 @@ export const filteredItemSlice = createSlice({
   reducers: {
     filteringReducer: (state, action) => {
       const { fullItem } = action.payload;
-      const { classification, location, selectedDate } =
-        action.payload.currentFilter;
+      const { classification, location, selectedDate } = action.payload.currentFilter;
       const fullItemArr = fullItem.culturalEventInfo.row;
       let filteredArr = fullItemArr;
       if (classification !== "전체") {
-        filteredArr = fullItemArr.filter(
-          (el) => el.CODENAME === classification
-        );
+        filteredArr = fullItemArr.filter((el) => el.CODENAME === classification);
       }
       if (location !== "전체") {
         filteredArr = filteredArr.filter((el) => el.GUNAME === location);
       }
       filteredArr = filteredArr.filter(
-        (el) =>
-          Date.parse(el.STRTDATE) + 1000 * 60 * 60 * 9 >=
-          Date.parse(selectedDate) // 한국기준시각 조정
+        (el) => Date.parse(el.STRTDATE) + 1000 * 60 * 60 * 9 >= Date.parse(selectedDate) // 한국기준시각 조정
       );
       state.filteredItem = filteredArr;
     },
