@@ -11,7 +11,8 @@ const ItemBoxContainer = styled.div`
   width: 70%;
   height: 80%;
   flex-wrap: wrap;
-  margin-top: 1%;
+  background-color: skyblue;
+  border-radius: 0 0 10px 10px;
 `;
 const ItemBox = () => {
   const { fullItem } = useSelector((state) => state.fullItem);
