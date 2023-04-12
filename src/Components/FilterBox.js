@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const FilterBoxContainer = styled.div`
   width: 60%;
-  height: 15%;
+  height: 9%;
   background-color: beige;
   display: flex;
 `;

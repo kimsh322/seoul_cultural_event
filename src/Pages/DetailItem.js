@@ -59,11 +59,7 @@ const DetailItem = () => {
           <div className="contents">신청일 : {itemObj.RGSTDATE}</div>
           <div className="contents">가격 : {itemObj.USE_FEE}</div>
           <div className="contents">
-            <a
-              href={itemObj.ORG_LINK}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
+            <a href={itemObj.ORG_LINK} rel="noopener noreferrer" target="_blank">
               자세히보러가기
             </a>
           </div>
